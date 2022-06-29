@@ -14,8 +14,7 @@ class CaseCategoriesModel extends Model{
         $this->builder=$db->table($this->table);
     }
     public function getcasetypeWhere($condition){
-        $result = $this->builder->where($condition)->get()->getResultArray();
-        
+        $result = $this->builder->where($condition)->get()->getResultArray();    
        if(empty($result)) {
          return false;
          }

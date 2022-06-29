@@ -45,8 +45,8 @@ http://www.tooplate.com/view/2080-minimax
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-          <li><?php  ?></li>
-          <li><?php  ?></li> 
+      <li><h3>Welcome <?=session()->get('First_Name')?></h3></li>
+          <p><li><a href="<?= base_url("/logout") ?>">logout</a></li></p>
         
       </ul>
     </div>
@@ -91,21 +91,16 @@ http://www.tooplate.com/view/2080-minimax
         <h1>WELCOME</h1>
         <h2>Enter the following details for your case</h2>
 
-        <form action="<?= base_url("/case") ?>" method="post" role="form">
+        <form id="saveCaseForm" action="<?= base_url("/registerCase") ?>" method="POST role="form">
 
-				<div class="col-md-1 col-sm-2"></div>
+				<div class="col-md-1 col-sm-1"></div>
 
-				<div class="col-md-7 col-sm-7">
+				<div class="col-md-10 col-sm-10">
 
-					<div class="col-md-4">
-            <label for="">Choose the date</label><br>
-          <input type="date" id="date" name="date"><br><br>
-				  	</div>
-
-				  	 <div class="col-md-4">
-              <div class="form-group">
-                <label for="">Case Category</label>
-                <select name="casecategory" id="category-dropdown" class="form-control">
+					<div class="col-md-6 col-sm-6">
+						<div class="form-group">
+                <label for="">Case Type</label>
+                <select name="casetype" id="category-dropdown" class="form-control" required>
                   <option value="0">Select</option>
                   <?php
                   $caseCategories = session()->get('caseCategories');
@@ -115,25 +110,43 @@ http://www.tooplate.com/view/2080-minimax
                   ?>
                 </select>
               </div>
-              <div class="form-group">
-                <label for="">Case Sub Category</label>
-                <select name="" id="subcategory-dropdown" class="form-control">
+				  	</div>
+
+					  <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label for="">Case Category</label>
+                <select name="casecategory" id="subcategory-dropdown" class="form-control">
                 <option value="0">Select</option>
                 
                 </select>
-              </div>    			    
-					 </div>
-
-           <div class="col-md-4">
-				  	 	    <input name="status" required type="radio" value="Starting">
-							<label for="status">Starting</label>
-				  	 	     <input name="status" required type="radio" value="Ongoing">
-							 <label for="status">Ongoing</label>     
+              </div>  
+				  	</div>
+            <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label for="">Choose a lawyer</label>
+                <select name="lawyerid" id="lawyer-dropdown" class="form-control">
+                <?php
+                  $lawyers = session()->get('lawyers');
+                    foreach($lawyers as $lawyers){
+                      if($lawyers['role'] == 2){
+                        echo '<option value="'.$lawyers['ID'].'">'.$lawyers['First_Name']." ".$lawyers['Last_Name'].'</option>';
+                      }
+                    }
+                  ?>
+                  
+                </select>
+              </div>
+            </div>
+				  	 <div class="col-md-6 col-sm-6">
+              
+				  	 	    <input name="status" required type="radio" id="Starting" value="Starting">
+                   <label for="role">Starting</label>
+				  	 	     <input name="status" required type="radio"id="Ongoing"  value="Ongoing">
+							 <label for="role">Ongoing</label>     
                			    
 					 </div>
-
-					<div class="col-md-4 ">
-						<input name="reg_user" type="submit" class="form-control" id="submit" value="Submit Case">
+					<div class="col-md-4 col-sm-4">
+						<input name="reg_user" type="submit" class="form-control" id="submit" value="Register Case">
 					</div>
 				</div>
 				<div class="col-md-1 col-sm-1"></div>
@@ -218,6 +231,7 @@ http://www.tooplate.com/view/2080-minimax
 
 <script>
 $(document).ready(function() {
+
 $('#category-dropdown').change(function() {
 cid = $('#category-dropdown').val();
 $.ajax({
@@ -230,7 +244,7 @@ $.ajax({
     var i;
     var j;
     for(i=0; i<obj.length; i++){
-        html += '<option value='+obj[i].ID+'>'+obj[i].Case_Category+'</option>';
+        html += '<option value='+obj[i].Case_Category+'>'+obj[i].Case_Category+'</option>';
         console.log(obj[i].Case_Category)
       
     }
@@ -238,6 +252,37 @@ $.ajax({
   }  
 });
 });
+
+// $('#saveCaseForm').submit('click',function(){
+
+//   if(document.getElementById('Starting').checked) {
+//     var statuS = $('#Starting').val();
+//   }else if(document.getElementById('Ongoing').checked) {
+//   var statuS = $('#Ongoing').val();
+//   }
+// 		var caseType = $('#category-dropdown').val();
+//     var caseCategory = $('#subcategory-dropdown').val();
+//     var lawyerId = $('#lawyer-dropdown').val();
+//     console.log(caseType,caseCategory,statuS,lawyerId);
+
+//     let formData = new FormData($('#saveCaseForm')[0]);
+
+
+// 		$.ajax({
+// 			type : "POST",
+// 			url  : "<?= base_url("/registerCase") ?>",
+// 			//data : {casetype:caseType, casecategory:caseCategory, status:statuS, lawyerid:lawyerId},
+//       $data: formData,
+//       dataType : "JSON",
+// 			success: function(data){
+//             alert(data);
+// 			}
+// 		});
+// 		return false;
+// 	});
+
+
+
 });
 </script>
 </body>

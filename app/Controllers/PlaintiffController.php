@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\CaseTypesModel;
 use App\Models\CaseCategoriesModel;
+use App\Models\UserModel;
+use App\Models\PendingCasesModel;
 
 class PlaintiffController extends BaseController
 {
@@ -22,20 +24,51 @@ class PlaintiffController extends BaseController
 
     public function Case()
     {
+
+        $user = new UserModel();
+        $lawyers = $user->getAllUsers();
+        session()->set('lawyers', $lawyers);
         
         $caseTypes = new CaseTypesModel();
         $caseCategories = $caseTypes->getAllCategories();
         session()->set('caseCategories', $caseCategories);
         return view('Plaintiff/case');
     }
-    public function getCaseCategoriesWhere($catid=0){
 
-   
+    public function getCaseCategoriesWhere($catid=0){
         $caseCategories = new CaseCategoriesModel();     
         $result = $caseCategories->getcasetypeWhere((['CaseType' => $catid]));
         echo json_encode($result);
-        return true;
         
+    }
+
+    public function registerCase(){ 
+
+        $data = [
+            'civilianid' => session()->get('ID'),
+            'casetype' => $this->request->getVar('casetype'),
+            'casecategory' => $this->request->getVar('casecategory'),
+            'status' => $this->request->getVar('status'),
+            'lawyerid' => $this->request->getVar('lawyerid'),
+        ];
+
+        //dd($data);
+
+        $pendingCases = new PendingCasesModel();
+        $pendingCases->saveData($data);
+        $session = session();
+        $session -> setFlashdata('successr', 'Your case has been received Succesfully. It willbe approved soon');
+
+        return view('Plaintiff/civiliandash');
+    }
+
+    public function viewPendingCases(){
+
+        $pendingCases = new PendingCasesModel();
+        $result = $pendingCases->getAllPendingCases();
+        session()->set('pendingCases', $result);
+        return view('Plaintiff/pendingcases');
+
     }
 
 }

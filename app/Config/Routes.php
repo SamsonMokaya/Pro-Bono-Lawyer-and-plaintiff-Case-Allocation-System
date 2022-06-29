@@ -55,22 +55,27 @@ $routes->group("plaintiff", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "PlaintiffController::plaintiff");
 });
 
+
 //Making a case route
+
 // Plaintiff routes
 $routes->group("case", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "PlaintiffController::case");
 });
 
+//Registering a case
+$routes->match(['get','post'],'registerCase', 'PlaintiffController::registerCase',);
+
+//viewPendingCases
+$routes->group("viewPendingCases", ["filter" => "auth"], function ($routes) {
+    $routes->get("/", "PlaintiffController::viewPendingCases");
+});
+
+
 //getting subcategories
 $routes->get("/getCaseCategoriesWhere/(:num)", "PlaintiffController::getCaseCategoriesWhere/$1");
 
 $routes->get('/logout', 'Home::logout');
-
-
-// $routes->get('/lawyer', 'LawyerController::lawyer');
-// $routes->get('/plaintiff', 'PlaintiffController::plaintiff');
-// $routes->get('/button', 'PlaintiffController::button');
-// $routes->get('/admin', 'AdminController::admin');
 
 /*
  * --------------------------------------------------------------------

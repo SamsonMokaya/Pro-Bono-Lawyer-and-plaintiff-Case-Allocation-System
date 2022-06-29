@@ -49,10 +49,8 @@ http://www.tooplate.com/view/2080-minimax
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="<?= base_url("/logout") ?>">logout</a></li>
-				<p><li><?=session()->get('First_Name')?></li></p>
-
-			
+			<li><h3>Welcome <?=session()->get('First_Name')?></h3></li>
+          <p><li><a href="<?= base_url("/logout") ?>">logout</a></li></p>	
 		    </div>
 
 				
@@ -94,26 +92,24 @@ http://www.tooplate.com/view/2080-minimax
 <!-- contact section -->
 <div id="contact">
 	<div class="container"><p>
-		
-
-
-
-	
 		<div class="row"><p>
-
-			
+		<?php if(session()->get('successr')): ?>
+                <div class="alert alert-success">
+                    <?=session()->get('successr') ?>
+                </div>
+            <?php endif; ?>	
 			<div class="col-md-12 col-sm-12">
 				<h2>Civilian Dashboard</h2></p>
 			</div></p>
-			
+			<div class="col-md-12 col-sm-1">
 				
-					<div class="col-md-4 col-sm-4">
-						<input name="profile" type="submit" class="form-control" id="profile" value="profile">
-						<input name="case" type="submit" class="form-control" id="case" value="Register a case">
-						<input name="pending" type="submit" class="form-control" id="pending" value="My pending cases">
-						<input name="law" type="submit" class="form-control" id="law" value="My lawyer cases">
+			</div>
 
-						<a class="form-control" href="<?= base_url("/case") ?>">Profile</a>
+					<div class="col-md-4 col-sm-4">
+						<input name="profile" type="submit"  class="form-control" id="profile" value="profile">
+						<input name="case" type="submit" class="form-control" onclick="location.href='<?= base_url('/case') ?>'" id="case" value="Register a case">
+						<input name="pending" type="submit" class="form-control" id="pending" onclick="location.href='<?= base_url('/viewPendingCases') ?>'" value="My pending cases">
+						<input name="law" type="submit" class="form-control" id="law" value="My Approved cases">
 				
 					</div>
 				</div>
