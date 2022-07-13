@@ -97,11 +97,14 @@ class Home extends BaseController
         return view('signin');
     }
 
+    public function profile()
+    {
+        $userModel = new UserModel();
+        $data = $userModel->getAllUsers();
+        session()->set('data', $data);
 
-
-
-
-
+        return view('profile');
+    }
 
     private function setUserSession($user)
     {

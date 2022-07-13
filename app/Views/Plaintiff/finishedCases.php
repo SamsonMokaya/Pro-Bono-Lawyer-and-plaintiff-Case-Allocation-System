@@ -123,7 +123,7 @@ http://www.tooplate.com/view/2080-minimax
             }
           }
         ?>
-      <td><p><button class="btn btn-primary">Rate Lawyer</button> <button onclick="location.href='<?= base_url('/deleteCase'.'/'.$row['id']) ?>'" class="btn btn-danger">Delete Case</button></td></p>
+      <td><p><button class="btn btn-primary">Rate Lawyer</button> <button onclick="location.href='<?= base_url('/deleteCase2'.'/'.$row['id']) ?>'" class="btn btn-danger">Delete Case</button></td></p>
       
     
     

@@ -113,7 +113,17 @@ http://www.tooplate.com/view/2080-minimax
       <td><p><?php echo $row['casecategory']; ?></td></p>
       <td><p><?php echo $row['status']; ?></td></p>
       <td><p><?php echo $row['Approval']; ?></td></p>
-      <td><p><button onclick="location.href='<?= base_url('/deleteCase'.'/'.$row['id']) ?>'" class="btn btn-danger">Delete Case</button></td></p>
+      <?php
+      if($row['Approval'] != 'Taken'){
+        ?>
+        <td><p><button onclick="location.href='<?= base_url('/deleteCase'.'/'.$row['id']) ?>'" class="btn btn-danger">Delete Case</button></td></p>
+        <?php
+      }else{
+        ?>
+        <td><p><button disabled="disabled" onclick="location.href='<?= base_url('/deleteCase'.'/'.$row['id']) ?>'" class="btn btn-danger">Delete Case</button></td></p>
+      <?php
+      }
+      ?>
       <td><p></td></p>
       
     

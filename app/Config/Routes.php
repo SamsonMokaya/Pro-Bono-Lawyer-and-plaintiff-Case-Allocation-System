@@ -55,6 +55,11 @@ $routes->group("plaintiff", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "PlaintiffController::plaintiff");
 });
 
+//profile page
+$routes->group("profile", ["filter" => "auth"], function ($routes) {
+    $routes->get("/", "Home::profile");
+});
+
 
 //Making a case route
 
@@ -77,6 +82,7 @@ $routes->group("viewPendingCases", ["filter" => "auth"], function ($routes) {
 
 //delete cases 
 $routes->get("/deleteCase/(:num)", "PlaintiffController::deleteCase/$1");
+$routes->get("/deleteCase2/(:num)", "PlaintiffController::deleteCase2/$1");
 
 
 //getting subcategories
