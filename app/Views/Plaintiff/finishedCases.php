@@ -92,7 +92,6 @@ http://www.tooplate.com/view/2080-minimax
   <thead>
     <tr>
       <th>Case id</th>
-      <th>Case Type</th>
       <th>Case Category</th>
       <th>Lawyer Rep</th>
       <th>Action</th>
@@ -111,7 +110,6 @@ http://www.tooplate.com/view/2080-minimax
     <tbody>
     <tr>
        <td><p><?php echo $row['id']; ?></td></p>
-      <td><p><?php echo $row['casetype']; ?></td></p>
       <td><p><?php echo $row['casecategory']; ?></td></p>
       <?php
         $lawyers = session()->get('lawyers');
@@ -125,7 +123,7 @@ http://www.tooplate.com/view/2080-minimax
             }
           }
         ?>
-      <td><p><button class="btn btn-danger">Delete Case</button></td></p>
+      <td><p><button class="btn btn-primary">Rate Lawyer</button> <button onclick="location.href='<?= base_url('/deleteCase'.'/'.$row['id']) ?>'" class="btn btn-danger">Delete Case</button></td></p>
       
     
     

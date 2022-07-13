@@ -75,6 +75,9 @@ $routes->group("viewPendingCases", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "PlaintiffController::viewPendingCases");
 });
 
+//delete cases 
+$routes->get("/deleteCase/(:num)", "PlaintiffController::deleteCase/$1");
+
 
 //getting subcategories
 $routes->get("/getCaseCategoriesWhere/(:num)", "PlaintiffController::getCaseCategoriesWhere/$1");

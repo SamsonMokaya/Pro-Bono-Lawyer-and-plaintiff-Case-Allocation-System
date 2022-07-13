@@ -28,6 +28,11 @@ class PendingCasesModel extends Model{
         }
         return $result[0];
     }
+    public function deleteCase($id){
+        $this->builder->set('is_deleted', 1)
+                  ->where('id', $id)
+                  ->update();
+    }
     
 }
 

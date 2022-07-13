@@ -105,6 +105,7 @@ http://www.tooplate.com/view/2080-minimax
   foreach ($pendingCases as $row) { 
     if($row['civilianid'] == session()->get('ID')){   
       if($row['is_deleted'] == 0){
+        if($row['Approval'] != 'Finished'){
     ?>
     <tbody>
     <tr>
@@ -112,6 +113,7 @@ http://www.tooplate.com/view/2080-minimax
       <td><p><?php echo $row['casecategory']; ?></td></p>
       <td><p><?php echo $row['status']; ?></td></p>
       <td><p><?php echo $row['Approval']; ?></td></p>
+      <td><p><button onclick="location.href='<?= base_url('/deleteCase'.'/'.$row['id']) ?>'" class="btn btn-danger">Delete Case</button></td></p>
       <td><p></td></p>
       
     
@@ -120,7 +122,7 @@ http://www.tooplate.com/view/2080-minimax
     </tr>
     </tbody>
 
-  <?php }}} ?>
+  <?php }}}} ?>
 </table>
 
 

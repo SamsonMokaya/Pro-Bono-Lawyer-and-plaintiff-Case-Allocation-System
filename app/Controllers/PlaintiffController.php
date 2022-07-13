@@ -53,6 +53,7 @@ class PlaintiffController extends BaseController
         echo json_encode($result);
         
     }
+    
 
     public function registerCase(){ 
 
@@ -82,7 +83,12 @@ class PlaintiffController extends BaseController
         return view('Plaintiff/pendingcases');
 
     }
-    public function deleteCases(){
+    
+    public function deleteCase($catid=0){
+
+        $pendingCases = new PendingCasesModel();
+        $pendingCases->deleteCase($catid);
+        return redirect()->to('http://localhost:8080/viewPendingCases');
 
     }
 
