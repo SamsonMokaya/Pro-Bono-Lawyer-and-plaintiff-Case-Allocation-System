@@ -108,8 +108,8 @@ http://www.tooplate.com/view/2080-minimax
 					<div class="col-md-4 col-sm-4">
 						<input name="profile" type="submit"  class="form-control" id="profile" value="profile">
 						<input name="case" type="submit" class="form-control" onclick="location.href='<?= base_url('/case') ?>'" id="case" value="Register a case">
-						<input name="pending" type="submit" class="form-control" id="pending" onclick="location.href='<?= base_url('/viewPendingCases') ?>'" value="My pending cases">
-						<input name="law" type="submit" class="form-control" id="law" value="My Approved cases">
+						<input name="pending" type="submit" class="form-control" id="pending" onclick="location.href='<?= base_url('/viewPendingCases') ?>'" value="View Your Case Status">
+						<input name="pending" type="submit" class="form-control" id="pending" onclick="location.href='<?= base_url('/completedcases') ?>'" value="View Your Completed Cases">
 				
 					</div>
 				</div>

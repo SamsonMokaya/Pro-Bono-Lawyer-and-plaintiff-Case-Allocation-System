@@ -63,6 +63,10 @@ $routes->group("case", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "PlaintiffController::case");
 });
 
+$routes->group("completedcases", ["filter" => "auth"], function ($routes) {
+    $routes->get("/", "PlaintiffController::completedCase");
+});
+
 //Registering a case
 $routes->match(['get','post'],'registerCase', 'PlaintiffController::registerCase',);
 

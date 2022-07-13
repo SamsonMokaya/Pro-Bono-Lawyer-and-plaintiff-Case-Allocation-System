@@ -92,10 +92,9 @@ http://www.tooplate.com/view/2080-minimax
   <thead>
     <tr>
       <th>Case id</th>
+      <th>Case Type</th>
       <th>Case Category</th>
       <th>Status</th>
-      <th>Approval</th>  
-      <th>Action</th>  
     </tr>
   </thead>
   <?php
@@ -103,16 +102,17 @@ http://www.tooplate.com/view/2080-minimax
   $pendingCases = session()->get('pendingCases');
   
   foreach ($pendingCases as $row) { 
-    if($row['civilianid'] == session()->get('ID')){   
-      if($row['is_deleted'] == 0){
+    if($row['civilianid'] == session()->get('ID')){
+        if($row['is_deleted'] == 0){
+          if($row['Approval'] == 'Finished'){
+        
     ?>
     <tbody>
     <tr>
        <td><p><?php echo $row['id']; ?></td></p>
+      <td><p><?php echo $row['casetype']; ?></td></p>
       <td><p><?php echo $row['casecategory']; ?></td></p>
-      <td><p><?php echo $row['status']; ?></td></p>
       <td><p><?php echo $row['Approval']; ?></td></p>
-      <td><p></td></p>
       
     
     
@@ -120,7 +120,7 @@ http://www.tooplate.com/view/2080-minimax
     </tr>
     </tbody>
 
-  <?php }}} ?>
+  <?php }}}} ?>
 </table>
 
 

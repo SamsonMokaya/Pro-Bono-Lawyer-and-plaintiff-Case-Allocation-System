@@ -4,7 +4,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 class PendingCasesModel extends Model{
-    protected $allowedFields=['id','civilianid','casetype', 'casecategory','status','lawyerid',];
+    protected $allowedFields=['id','civilianid','casetype', 'casecategory','status','lawyerid','Approval','is_deleted'];
     protected $primaryKey='id';
     protected $table='pendingcases';
     protected $db,$builder;

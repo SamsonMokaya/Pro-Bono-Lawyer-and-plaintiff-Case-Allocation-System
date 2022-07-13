@@ -34,6 +34,18 @@ class PlaintiffController extends BaseController
         session()->set('caseCategories', $caseCategories);
         return view('Plaintiff/case');
     }
+    public function completedCase()
+    {
+
+        $user = new UserModel();
+        $lawyers = $user->getAllUsers();
+        session()->set('lawyers', $lawyers);
+        
+        $caseTypes = new CaseTypesModel();
+        $caseCategories = $caseTypes->getAllCategories();
+        session()->set('caseCategories', $caseCategories);
+        return view('Plaintiff/finishedCases');
+    }
 
     public function getCaseCategoriesWhere($catid=0){
         $caseCategories = new CaseCategoriesModel();     
@@ -68,6 +80,9 @@ class PlaintiffController extends BaseController
         $result = $pendingCases->getAllPendingCases();
         session()->set('pendingCases', $result);
         return view('Plaintiff/pendingcases');
+
+    }
+    public function deleteCases(){
 
     }
 

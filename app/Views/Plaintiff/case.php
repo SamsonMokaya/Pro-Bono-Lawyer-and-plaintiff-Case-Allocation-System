@@ -46,7 +46,8 @@ http://www.tooplate.com/view/2080-minimax
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
       <li><h3>Welcome <?=session()->get('First_Name')?></h3></li>
-          <p><li><a href="<?= base_url("/logout") ?>">logout</a></li></p>
+      
+          <p><li><a href="<?= base_url("/plaintiff") ?>">Back</a></li><li><a href="<?= base_url("/logout") ?>">logout</a></li></p>
         
       </ul>
     </div>
