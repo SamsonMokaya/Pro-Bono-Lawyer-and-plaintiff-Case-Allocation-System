@@ -94,7 +94,8 @@ http://www.tooplate.com/view/2080-minimax
       <th>Case id</th>
       <th>Case Type</th>
       <th>Case Category</th>
-      <th>Status</th>
+      <th>Lawyer Rep</th>
+      <th>Action</th>
     </tr>
   </thead>
   <?php
@@ -112,7 +113,19 @@ http://www.tooplate.com/view/2080-minimax
        <td><p><?php echo $row['id']; ?></td></p>
       <td><p><?php echo $row['casetype']; ?></td></p>
       <td><p><?php echo $row['casecategory']; ?></td></p>
-      <td><p><?php echo $row['Approval']; ?></td></p>
+      <?php
+        $lawyers = session()->get('lawyers');
+          foreach($lawyers as $lawyers){
+            if($lawyers['ID'] == $row['lawyerid']){
+              ?>
+              <td><p><?php echo $lawyers['First_Name']." ".$lawyers['Last_Name']; ?></td></p>
+              <?php
+            }else{
+              
+            }
+          }
+        ?>
+      <td><p><button class="btn btn-danger">Delete Case</button></td></p>
       
     
     
