@@ -123,7 +123,7 @@ http://www.tooplate.com/view/2080-minimax
             }
           }
         ?>
-      <td><p><button class="btn btn-primary">Cancel Case</button> <button onclick="location.href='<?= base_url('/deleteCase3'.'/'.$row['id']) ?>'" class="btn btn-danger">Delete Case</button></td></p>
+      <td><p><button onclick="location.href='<?= base_url('/cancelCase'.'/'.$row['id']) ?>'" class="btn btn-primary">Cancel Case</button></td></p>
       
     
     

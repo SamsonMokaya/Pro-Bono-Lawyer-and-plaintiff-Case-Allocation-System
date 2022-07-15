@@ -53,10 +53,10 @@ class LawyerController extends BaseController
         session()->set('takenCases', $result);
         return view('Lawyer/takenCases');
     }
-    public function deleteCase($catid=0){
+    public function cancelCase($catid=0){
 
         $pendingCases = new PendingCasesModel();
-        $pendingCases->deleteCase($catid);
+        $pendingCases->cancelCase($catid);
         return redirect()->to('http://localhost:8080/takenCases');
 
     }

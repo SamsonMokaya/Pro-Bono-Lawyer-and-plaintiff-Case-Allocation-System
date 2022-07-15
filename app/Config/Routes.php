@@ -66,7 +66,7 @@ $routes->group("takenCases", ["filter" => "auth"], function ($routes) {
 });
 
 //delete case
-$routes->get("/deleteCase3/(:num)", "LawyerController::deleteCase/$1");
+$routes->get("/cancelCase/(:num)", "LawyerController::cancelCase/$1");
 
 
 
