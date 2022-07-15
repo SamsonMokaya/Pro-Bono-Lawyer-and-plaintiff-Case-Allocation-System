@@ -95,7 +95,7 @@ class PlaintiffController extends BaseController
 
         $pendingCases = new PendingCasesModel();
         $pendingCases->deleteCase($catid);
-        return redirect()->to('http://localhost:8080/viewPendingCases');
+        return redirect()->to('http://localhost:8080/completedcases');
 
     }
 

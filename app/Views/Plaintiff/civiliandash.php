@@ -114,7 +114,7 @@ http://www.tooplate.com/view/2080-minimax
 					</div>
 				</div>
 				<div class="col-md-1 col-sm-1"></div>
-			</form>
+		
 		</div>
 	</div>
 </div>

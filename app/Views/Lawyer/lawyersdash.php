@@ -48,22 +48,11 @@ http://www.tooplate.com/view/2080-minimax
 			<a href="#home" class="navbar-brand smoothScroll">Label</a>
 		</div>
 		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="<?= base_url("/logout") ?>">logout</a></li>
-				<p><li></li></p>
-
-
-				
-
-
-
-
-
-
-		    </div>
-
-				
-			</ul>
+		<ul class="nav navbar-nav navbar-right">
+            <h3>Welcome <?=session()->get('First_Name')?></h3>
+            <li><a href="<?= base_url("/lawyer") ?>">Back</a></li>
+            <li><a href="<?= base_url("/logout") ?>">logout</a></li>
+            </ul>
 		</div>
 	</div>
 </div>		
@@ -119,11 +108,11 @@ http://www.tooplate.com/view/2080-minimax
 			
 				
 					<div class="col-md-4 col-sm-4">
-					<form action="button.php" method="post" role="form">
+				
 						<input name="lawyerprofile" type="submit" class="form-control" id="lawyerprofile" value="profile">
-						<input name="recommended" type="submit" class="form-control" id="recommended" value="view recommended cases">
-						<input name="registered" type="submit" class="form-control" id="registered" value="taken cases">
-					</form>
+						<input name="recommended" type="submit" class="form-control" id="recommended" onclick="location.href='<?= base_url('/recommendedCases') ?>'" value="view recommended cases">
+						<input name="registered" type="submit" class="form-control" id="registered" onclick="location.href='<?= base_url('/takenCases') ?>'" value="taken cases">
+					
 					</div>
 				</div>
 				<div class="col-md-1 col-sm-1"></div>

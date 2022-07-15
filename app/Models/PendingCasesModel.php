@@ -33,6 +33,11 @@ class PendingCasesModel extends Model{
                   ->where('id', $id)
                   ->update();
     }
+    public function takeCase($id){
+        $this->builder->set('Approval', 'Taken')
+                  ->where('id', $id)
+                  ->update();
+    }
     
 }
 

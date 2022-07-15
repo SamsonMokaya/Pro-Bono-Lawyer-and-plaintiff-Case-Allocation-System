@@ -50,10 +50,28 @@ $routes->group("lawyer", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "LawyerController::lawyer");
 });
 
-// Plaintiff routes
-$routes->group("plaintiff", ["filter" => "auth"], function ($routes) {
-    $routes->get("/", "PlaintiffController::plaintiff");
+//view recomended cases
+$routes->group("lawyer", ["filter" => "auth"], function ($routes) {
+    $routes->get("/", "LawyerController::lawyer");
 });
+
+// Plaintiff routes
+$routes->group("recommendedCases", ["filter" => "auth"], function ($routes) {
+    $routes->get("/", "LawyerController::viewCase");
+});
+
+//taken cases
+$routes->group("takenCases", ["filter" => "auth"], function ($routes) {
+    $routes->get("/", "LawyerController::takenCases");
+});
+
+//delete case
+$routes->get("/deleteCase3/(:num)", "LawyerController::deleteCase/$1");
+
+
+
+///////////////////////////////////////////////////////////
+
 
 //profile page
 $routes->group("profile", ["filter" => "auth"], function ($routes) {
@@ -67,6 +85,14 @@ $routes->group("profile", ["filter" => "auth"], function ($routes) {
 $routes->group("case", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "PlaintiffController::case");
 });
+
+$routes->group("plaintiff", ["filter" => "auth"], function ($routes) {
+    $routes->get("/", "PlaintiffController::Plaintiff");
+});
+
+//taking a case
+$routes->get("/takeCase/(:num)", "LawyerController::takeCase/$1");
+
 
 $routes->group("completedcases", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "PlaintiffController::completedCase");
