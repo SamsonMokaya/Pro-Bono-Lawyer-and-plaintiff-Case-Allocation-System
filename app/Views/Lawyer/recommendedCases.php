@@ -88,6 +88,15 @@ http://www.tooplate.com/view/2080-minimax
     <div class="col-md-12 col-sm-12">
         <h2>LAWYER LOGS </h2>
       </div>
+  
+<?php
+$pending = session()->get('pending');
+foreach ($pending as $row) { 
+  if($row['lawyerid'] == session()->get('ID')){
+      if($row['is_deleted'] == 0){
+        if($row['Approval'] == 'Pending'){
+      
+  ?>
         <table align="centre" border="4px" style="width: 1000px"; line-height:40px>
   <thead>
     <tr>
@@ -97,16 +106,6 @@ http://www.tooplate.com/view/2080-minimax
       <th>Action</th>
     </tr>
   </thead>
-  <?php
-
-  $pending = session()->get('pending');
-  
-  foreach ($pending as $row) { 
-    if($row['lawyerid'] == session()->get('ID')){
-        if($row['is_deleted'] == 0){
-          if($row['Approval'] == 'Pending'){
-        
-    ?>
     <tbody>
     <tr>
        <td><p><?php echo $row['id']; ?></td></p>
@@ -125,24 +124,22 @@ http://www.tooplate.com/view/2080-minimax
         ?>
       <td>
         <p><button onclick="location.href='<?= base_url(('/takeCase'.'/'.$row['id'])) ?>'" class="btn btn-primary">Take Case</button></td></p>
-
-      
-    
-    
-     
+ 
     </tr>
     </tbody>
+    </table>
 
-  <?php }}}} ?>
-</table>
+  <?php }
+}}
+
+} ?>
 
 
-    </form>
     
            
         </div>
         <div class="col-md-1 col-sm-1"></div>
-      </form>
+   
     </div>
   </div>
 </div>

@@ -41,9 +41,9 @@ class PlaintiffController extends BaseController
         $lawyers = $user->getAllUsers();
         session()->set('lawyers', $lawyers);
         
-        $caseTypes = new CaseTypesModel();
-        $caseCategories = $caseTypes->getAllCategories();
-        session()->set('caseCategories', $caseCategories);
+        $pendingCases = new PendingCasesModel();
+        $result = $pendingCases->getAllPendingCases();
+        session()->set('pendingCases', $result);
         return view('Plaintiff/finishedCases');
     }
 
