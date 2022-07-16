@@ -93,10 +93,16 @@ $routes->group("plaintiff", ["filter" => "auth"], function ($routes) {
 //taking a case
 $routes->get("/takeCase/(:num)", "LawyerController::takeCase/$1");
 
-
+//completed cases
+$routes->group("lawyers", ["filter" => "auth"], function ($routes) {
+    $routes->get("/", "PlaintiffController::getAllLawyers");
+});
+//lawyers
 $routes->group("completedcases", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "PlaintiffController::completedCase");
 });
+//lawyer profile page
+$routes->get("/viewProfile/(:num)", "PlaintiffController::lawyerProfilePage/$1");
 
 //Registering a case
 $routes->match(['get','post'],'registerCase', 'PlaintiffController::registerCase',);

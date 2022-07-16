@@ -22,6 +22,19 @@ class PlaintiffController extends BaseController
         return view('Plaintiff/civiliandash');
     }
 
+    public function getAllLawyers(){
+        $user = new UserModel();
+        $lawyers = $user->getUsersWhere((['role' => 2]));
+        session()->set('lawyers', $lawyers);
+        return view('Plaintiff/lawyers');
+    }
+    public function lawyerProfilePage($id=0){
+        $user = new UserModel();
+        $lawyers = $user->getUserWhere((['ID' => $id]));
+        session()->set('plawyer', $lawyers);
+        return view('Plaintiff/lawyerprofilepage');
+    }
+
     public function Case()
     {
 
