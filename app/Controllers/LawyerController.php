@@ -60,5 +60,36 @@ class LawyerController extends BaseController
         return redirect()->to('http://localhost:8080/takenCases');
 
     }
+    public function profilePage($cid=0){
+        $user = new UserModel();
+        $lawyerp = $user->getUserWhere((['ID' => $cid]));
+        session()->set('lawyerDetails', $lawyerp);
+        return view('Lawyer/profile');
+        
+    }
+    public function editProfileLawyer($cid=0){
+        $user = new UserModel();
+        $lawyerp = $user->getUserWhere((['ID' => $cid]));
+        session()->set('lawyerD', $lawyerp);
+        return view('Lawyer/updateProfile');
+        
+    }
+
+    public function updateProfileLawyer($cid=0){
+
+        $data = [
+            'First_Name' => $this->request->getPost('First_Name'),
+            'Last_Name' => $this->request->getPost('Last_Name'),
+            'Email' => $this->request->getPost('Email'),
+            'Description' => $this->request->getPost('Description'),
+            'password' => $this->request->getPost('password_1'),
+           
+        ];
+        $userModel = new UserModel();
+        $userModel->updateProfile($cid,$data);
+        session()->set($data);
+        return redirect()->to('/lawyer');
+
+    }
 
 }

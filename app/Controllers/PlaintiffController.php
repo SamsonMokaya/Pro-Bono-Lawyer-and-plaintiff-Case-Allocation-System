@@ -7,6 +7,7 @@ use App\Models\CaseTypesModel;
 use App\Models\CaseCategoriesModel;
 use App\Models\UserModel;
 use App\Models\PendingCasesModel;
+use App\Models\RatingModel;
 
 class PlaintiffController extends BaseController
 {
@@ -33,6 +34,9 @@ class PlaintiffController extends BaseController
         $lawyers = $user->getUserWhere((['ID' => $id]));
         session()->set('plawyer', $lawyers);
         return view('Plaintiff/lawyerprofilepage');
+    }
+    public function myProfilePage($id=0){
+        return view('Plaintiff/profile');
     }
 
     public function Case()
@@ -109,6 +113,40 @@ class PlaintiffController extends BaseController
         $pendingCases = new PendingCasesModel();
         $pendingCases->deleteCase($catid);
         return redirect()->to('http://localhost:8080/completedcases');
+
+    }
+    
+    public function rating(){
+
+        if ($this->request->isAJAX()) {
+            $data = [
+                'lawyerid' => session()->get('lawyerid'),
+                'Comments' => $this->request->getPost('user_review'),
+            ];
+            dd($data);
+        }
+        
+        //if($this->request->getMethod() == 'post'){
+            // $data = [
+            //     'lawyerid' => session()->get('lawyerid'),
+            //     'Comments' => $this->request->getPost('user_review'),
+            // ];
+            // dd($data);
+        //}
+        //dd($data);
+        // if ($this->request->isAJAX()) {
+        //     $prodID = service('request')->getPost('user_name');
+            
+        //     $data = [
+        //         'lawyerid' => session()->get('lawyerid'),
+        //         'Comments' => $this->request->getPost('First_Name')
+        //     ];
+          
+        // } 
+        // dd($prodID);
+
+        //$ratings = new RatingModel();
+       // $ratings->saveData($data);
 
     }
 

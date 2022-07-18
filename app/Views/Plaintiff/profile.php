@@ -17,12 +17,12 @@ http://www.tooplate.com/view/2080-minimax
 
 -->
   <!-- stylesheet css -->
-  <link href="/assets/css/bootstrap.min.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
-  <link href="/assets/css/font-awesome.min.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
-	<link href="/assets/css/nivo-lightbox.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
-  <link href="/assets/css/default.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
-  <link href="/assets/css/style.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
-  <link href="/assets/css/profile.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="/assets/css/nivo-lightbox.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/default.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/profile.css" rel="stylesheet" type="text/css">
   
 	
 	<!-- google web font css -->
@@ -48,7 +48,7 @@ http://www.tooplate.com/view/2080-minimax
         
 			<ul class="nav navbar-nav navbar-right">
             <h3>Welcome <?=session()->get('First_Name')?></h3>
-            <li><a href="<?= base_url("/lawyers") ?>">Back</a></li>
+            <li><a href="<?= base_url("/plaintiff") ?>">Back</a></li>
             <li><a href="<?= base_url("/logout") ?>">logout</a></li>
             </ul>
 		    </div>
@@ -74,14 +74,14 @@ $lawyer = session()->get('plawyer');
                 
                 <div class="text-center mt-3">
                     <span class="bg-secondary p-1 px-4 rounded text-white">Lawyer</span>
-                    <h4 class="mt-2 mb-0"><?php echo $lawyer['First_Name'].' '.$lawyer['Last_Name'] ?></h4>
-                    <span>Successful Cases : <?php echo $lawyer['Succesful_Cases']?></span>
+                    <h4 class="mt-2 mb-0">Name : <?php echo $lawyer['First_Name'].' '.$lawyer['Last_Name'] ?></h4>
+                    <span>Email : <?php echo $lawyer['Email']?></span>
                     <br>
-                    <span>Failed Cases : <?php echo $lawyer['Failed_Cases']?></span>
-                    <div class="px-4 mt-1">
-                        <p class="fonts"><?php echo $lawyer['Description']?></p>
-                    
-                    </div>
+                    <span>Password : <?php echo $lawyer['password']?></span><br>
+                    <span>Criminal Record : <?php echo $lawyer['Criminal_Record']?></span>
+                    <br>
+                    <span><button onclick="location.href='<?= base_url('/editProfileP'.'/'.session()->get('ID')) ?>'">Edit Profile</button></span>
+                    <br>
                     
                      <ul class="social-list">
                         <li><i class="fa fa-facebook"></i></li>

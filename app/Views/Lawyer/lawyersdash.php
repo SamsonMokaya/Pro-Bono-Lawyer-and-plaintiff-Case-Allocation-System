@@ -109,7 +109,7 @@ http://www.tooplate.com/view/2080-minimax
 				
 					<div class="col-md-4 col-sm-4">
 				
-						<input name="lawyerprofile" type="submit" class="form-control" id="lawyerprofile" value="profile">
+					<input name="profile" type="submit"  class="form-control" onclick="location.href='<?= base_url('/myProfile'.'/'.session()->get('ID')) ?>'" id="profile" value="profile">
 						<input name="recommended" type="submit" class="form-control" id="recommended" onclick="location.href='<?= base_url('/recommendedCases') ?>'" value="view recommended cases">
 						<input name="registered" type="submit" class="form-control" id="registered" onclick="location.href='<?= base_url('/takenCases') ?>'" value="taken cases">
 					

@@ -29,13 +29,8 @@ class Home extends BaseController
                 return view('signup', $data);
             }else{
 
-                $data = [
-                    'First_Name' => $this->request->getPost('First_Name'),
-                    'Last_Name' => $this->request->getPost('Last_Name'),
-                    'Email' => $this->request->getPost('Email'),
-                    'password' => $this->request->getPost('password_1'),
-                    'role' => $this->request->getPost('role'),
-                ];
+                
+                
                 $userModel->saveData($data);
                 $session = session();
                 $session -> setFlashdata('success', 'Sucesful registration');
@@ -103,7 +98,30 @@ class Home extends BaseController
         $data = $userModel->getAllUsers();
         session()->set('data', $data);
 
-        return view('profile');
+        return view('Plaintiff/profile');
+    }
+    public function editProfileP($cid=0){
+        $userModel = new UserModel();
+        $userProfile = $userModel->getUserWhere((['ID' => $cid]));
+        session()->set('userProfile', $userProfile);
+        return view('Plaintiff/updateProfile');
+        
+    }
+
+    public function updateProfileUser($cid=0){
+
+        $data = [
+            'First_Name' => $this->request->getPost('First_Name'),
+            'Last_Name' => $this->request->getPost('Last_Name'),
+            'Email' => $this->request->getPost('Email'),
+            'password' => $this->request->getPost('password_1'),
+           
+        ];
+        $userModel = new UserModel();
+        $userModel->updateProfile($cid,$data);
+        session()->set($data);
+        return redirect()->to('/plaintiff');
+
     }
 
     private function setUserSession($user)

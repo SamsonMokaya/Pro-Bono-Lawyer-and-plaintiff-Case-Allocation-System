@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 //use Config\Database;
 
 class UserModel extends Model{
-    protected $allowedFields=['ID','First_Name','Last_Name', 'Email','password','role',];
+    protected $allowedFields=['ID','First_Name','Last_Name', 'Email','password','role','profile'];
     protected $primaryKey='ID';
     protected $table='Users';
     protected $beforeInsert = ['beforeInsert'];
@@ -57,6 +57,11 @@ class UserModel extends Model{
        }
        return $result;
    }
+   public function updateProfile($id,$data){
+    $this->builder->set($data)
+              ->where('id', $id)
+              ->update();
+}
     
 }
 

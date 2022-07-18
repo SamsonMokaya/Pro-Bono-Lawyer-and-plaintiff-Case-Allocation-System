@@ -42,7 +42,7 @@ $routes->match(['get','post'], 'signin', 'Home::signin',["filter" => "noauth"]);
 
 //admin routes
 $routes->group("admin", ["filter" => "auth"], function ($routes) {
-    $routes->get("/", "AdminController::index");
+    $routes->get("/", "AdminController::admin");
 });
 
 // lawyer routes
@@ -68,6 +68,14 @@ $routes->group("takenCases", ["filter" => "auth"], function ($routes) {
 //delete case
 $routes->get("/cancelCase/(:num)", "LawyerController::cancelCase/$1");
 
+//Lawyer profile
+$routes->get("/myProfile/(:num)", "LawyerController::profilePage/$1");
+
+//edit lawyer profile
+$routes->get("/myLawyerProfile/(:num)", "LawyerController::editProfileLawyer/$1");
+
+//update lawyer profile
+$routes->match(['get','post'],"/editupdateLProfile/(:num)", "LawyerController::updateProfileLawyer/$1");
 
 
 ///////////////////////////////////////////////////////////
@@ -104,8 +112,18 @@ $routes->group("completedcases", ["filter" => "auth"], function ($routes) {
 //lawyer profile page
 $routes->get("/viewProfile/(:num)", "PlaintiffController::lawyerProfilePage/$1");
 
+//my profile page
+$routes->get("/myProfile/(:num)", "PlaintiffController::myProfilePage/$1");
+
+//edit user profile
+$routes->get("/editProfileP/(:num)", "Home::editProfileP/$1");
+$routes->match(['get','post'],"/editupdateProfile/(:num)", "Home::updateProfileUser/$1");
+
 //Registering a case
 $routes->match(['get','post'],'registerCase', 'PlaintiffController::registerCase',);
+
+//rating lawyer
+$routes->match(['get','post'], "/rating", "PlaintiffController::rating");
 
 //viewPendingCases
 $routes->group("viewPendingCases", ["filter" => "auth"], function ($routes) {
