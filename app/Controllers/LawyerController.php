@@ -77,12 +77,18 @@ class LawyerController extends BaseController
 
     public function updateProfileLawyer($cid=0){
 
+        $file = $this->request->getFile('img');
+        if ($file->isValid() && !$file->hasMoved()) {
+            $fileName = $file->getRandomName();
+            $file->move(ROOTPATH . 'public/assets/images/uploads/', $fileName);
+            }
         $data = [
             'First_Name' => $this->request->getPost('First_Name'),
             'Last_Name' => $this->request->getPost('Last_Name'),
             'Email' => $this->request->getPost('Email'),
             'Description' => $this->request->getPost('Description'),
             'password' => $this->request->getPost('password_1'),
+            'profile_pic' => $fileName,
            
         ];
         $userModel = new UserModel();

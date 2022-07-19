@@ -51,6 +51,48 @@ class PlaintiffController extends BaseController
         session()->set('caseCategories', $caseCategories);
         return view('Plaintiff/case');
     }
+
+    public function profilePage($cid=0){
+        $user = new UserModel();
+        $plaintiff = $user->getUserWhere((['ID' => $cid]));
+        session()->set('plaintiff', $plaintiff);
+        return view('Plaintiff/profile');
+        
+    }
+
+    public function editProfilePlaintiff($cid=0){
+        $user = new UserModel();
+        $lawyerp = $user->getUserWhere((['ID' => $cid]));
+        session()->set('lawyerD', $lawyerp);
+        return view('Lawyer/updateProfile');
+        
+    }
+
+    public function updateProfilePlaintiff($cid=0){
+
+        
+
+        $file = $this->request->getFile('img');
+        if ($file->isValid() && !$file->hasMoved()) {
+            $fileName = $file->getRandomName();
+            $file->move(ROOTPATH . 'public/assets/images/uploads/', $fileName);
+            }
+        $data = [
+            'First_Name' => $this->request->getPost('First_Name'),
+            'Last_Name' => $this->request->getPost('Last_Name'),
+            'Email' => $this->request->getPost('Email'),
+            'Description' => $this->request->getPost('Description'),
+            'password' => $this->request->getPost('password_1'),
+            'profile_pic' => $fileName,
+           
+        ];
+        $userModel = new UserModel();
+        $userModel->updateProfile($cid,$data);
+        session()->set($data);
+        return redirect()->to('/lawyer');
+
+    }
+
     public function completedCase()
     {
 
@@ -100,6 +142,28 @@ class PlaintiffController extends BaseController
         return view('Plaintiff/pendingcases');
 
     }
+    public function updateProfileUser($cid=0){
+
+                $file = $this->request->getFile('img');
+                if ($file->isValid() && !$file->hasMoved()) {
+                    $fileName = $file->getRandomName();
+                    $file->move(ROOTPATH . 'public/assets/images/uploads/', $fileName);
+                    }
+                $data = [
+                    'First_Name' => $this->request->getPost('First_Name'),
+                    'Last_Name' => $this->request->getPost('Last_Name'),
+                    'Email' => $this->request->getPost('Email'),
+                    'password' => $this->request->getPost('password_1'),
+                    'profile_pic' => $fileName,
+                ];
+                $userModel = new UserModel();
+                $userModel->updateProfile($cid,$data);
+                session()->set($data);
+                return redirect()->to('/plaintiff');
+            //}
+        
+
+    }
     
     public function deleteCase($catid=0){
 
@@ -118,35 +182,14 @@ class PlaintiffController extends BaseController
     
     public function rating(){
 
-        if ($this->request->isAJAX()) {
-            $data = [
-                'lawyerid' => session()->get('lawyerid'),
-                'Comments' => $this->request->getPost('user_review'),
-            ];
-            dd($data);
-        }
+        $data = [
+            'lawyerid' => session()->get('lawyerid'),
+            'Comments' => $this->request->getPost('user_review'),
+            'Rating' => $this->request->getPost('rating'),
+        ];
         
-        //if($this->request->getMethod() == 'post'){
-            // $data = [
-            //     'lawyerid' => session()->get('lawyerid'),
-            //     'Comments' => $this->request->getPost('user_review'),
-            // ];
-            // dd($data);
-        //}
-        //dd($data);
-        // if ($this->request->isAJAX()) {
-        //     $prodID = service('request')->getPost('user_name');
-            
-        //     $data = [
-        //         'lawyerid' => session()->get('lawyerid'),
-        //         'Comments' => $this->request->getPost('First_Name')
-        //     ];
-          
-        // } 
-        // dd($prodID);
-
-        //$ratings = new RatingModel();
-       // $ratings->saveData($data);
+    $ratings = new RatingModel();
+    $ratings->saveData($data);
 
     }
 

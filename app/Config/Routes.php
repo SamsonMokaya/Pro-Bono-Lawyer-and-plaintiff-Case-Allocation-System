@@ -80,11 +80,16 @@ $routes->match(['get','post'],"/editupdateLProfile/(:num)", "LawyerController::u
 
 ///////////////////////////////////////////////////////////
 
+//update lawyer profile
+$routes->match(['get','post'],"/editupdate/(:num)", "PlaintiffController::updateProfilePlaintiff/$1");
 
 //profile page
 $routes->group("profile", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "Home::profile");
 });
+
+//profile
+$routes->get("/profile/(:num)", "PlaintiffController::profilePage/$1");
 
 
 //Making a case route
@@ -101,7 +106,7 @@ $routes->group("plaintiff", ["filter" => "auth"], function ($routes) {
 //taking a case
 $routes->get("/takeCase/(:num)", "LawyerController::takeCase/$1");
 
-//completed cases
+//lawyers
 $routes->group("lawyers", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "PlaintiffController::getAllLawyers");
 });
@@ -117,13 +122,13 @@ $routes->get("/myProfile/(:num)", "PlaintiffController::myProfilePage/$1");
 
 //edit user profile
 $routes->get("/editProfileP/(:num)", "Home::editProfileP/$1");
-$routes->match(['get','post'],"/editupdateProfile/(:num)", "Home::updateProfileUser/$1");
+$routes->match(['get','post'],"/editupdateProfile/(:num)", "PlaintiffController::updateProfileUser/$1");
 
 //Registering a case
 $routes->match(['get','post'],'registerCase', 'PlaintiffController::registerCase',);
 
 //rating lawyer
-$routes->match(['get','post'], "/rating", "PlaintiffController::rating");
+$routes->post("/rating", "PlaintiffController::rating");
 
 //viewPendingCases
 $routes->group("viewPendingCases", ["filter" => "auth"], function ($routes) {
@@ -139,6 +144,20 @@ $routes->get("/deleteCase2/(:num)", "PlaintiffController::deleteCase2/$1");
 $routes->get("/getCaseCategoriesWhere/(:num)", "PlaintiffController::getCaseCategoriesWhere/$1");
 
 $routes->get('/logout', 'Home::logout');
+
+////////////////////////////////////////////
+
+//admin routes
+
+//lawyers
+$routes->group("lawyersd", ["filter" => "auth"], function ($routes) {
+    $routes->get("/", "AdminController::getAllLawyers");
+});
+
+//plaintiff
+$routes->group("plaintiffs", ["filter" => "auth"], function ($routes) {
+    $routes->get("/", "AdminController::getAllPlaintiffs");
+});
 
 /*
  * --------------------------------------------------------------------

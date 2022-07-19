@@ -69,7 +69,7 @@ $lawyer = session()->get('lawyerDetails');
             <div class="card p-3 py-4">
                 
                 <div class="text-center">
-                    <img src="<?= base_url('/'.$lawyer['profile_pic']) ?>" width="100" class="rounded-circle">
+                    <img src="<?= base_url('/assets/images/uploads/'.$lawyer['profile_pic']) ?>" width="100" class="rounded-circle">
                 </div>
                 
                 <div class="text-center mt-3">

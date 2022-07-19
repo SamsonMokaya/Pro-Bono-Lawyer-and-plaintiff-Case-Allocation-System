@@ -49,8 +49,10 @@ http://www.tooplate.com/view/2080-minimax
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-         <li><a href="view.php">view lawyers</a></li>
-        <li><a href="index.html">HOME</a></li>
+      <li><a href="index.html">HOME</a></li>
+         <li><a onclick="location.href='<?= base_url('/lawyersd') ?>'">view lawyers</a></li>
+         <li><a onclick="location.href='<?= base_url('/plaintiffs') ?>'">view Plaintiffs</a></li>
+
         
       </ul>
     </div>

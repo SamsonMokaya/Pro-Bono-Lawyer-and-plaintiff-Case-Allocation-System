@@ -98,7 +98,7 @@ http://www.tooplate.com/view/2080-minimax
 			<?php
             $lawyer = session()->get('lawyerD');
 			?>
-			<form action="<?= base_url("/editupdateLProfile".'/'.session()->get('ID')) ?>" method="post" role="form">
+			<form enctype="multipart/form-data" action="<?= base_url("/editupdateLProfile".'/'.session()->get('ID')) ?>" method="post" role="form">
 				<div class="col-md-1 col-sm-1"></div>
 				<div class="col-md-10 col-sm-10">
 					<div class="col-md-6 col-sm-6">
@@ -111,15 +111,20 @@ http://www.tooplate.com/view/2080-minimax
 					   <input name="Email" value="<?php echo $lawyer['Email']?>" required type="email" class="form-control" id="email" >
 				  	</div>
                    <div class="col-md-6 col-sm-6">
-						<input name="password_1" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" type="password" class="form-control" id="password_1"  placeholder="password">						
+						<input name="password_1" value="<?php echo $lawyer['password']?>" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" type="password" class="form-control" id="password_1"  placeholder="password">						
 					</div>
 					<div class="col-md-6 col-sm-6">
-						<input name="password_2" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required class="form-control" id="password_2" placeholder="confirm password">
+						<input name="password_2" value="<?php echo $lawyer['password']?>" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required class="form-control" id="password_2" placeholder="confirm password">
 						<span id='message'></span>
 				  	</div>
 					  <div class="col-md-6 col-sm-6">
-						<textarea name="Description" id="" cols="30" rows="5"><?php echo $lawyer['Description']?></textarea>
+						<textarea name="Description" id="" cols="30" rows="2"><?php echo $lawyer['Description']?></textarea>
 				  	</div>
+					  <div class="col-md-6 col-sm-6">
+						<div class="form-group mb-2">
+							<input type="file" name="img" class="form-control" id="customFile">
+						</div>
+				  	</div><br>
 					<div class="col-md-4 col-sm-4">
 						<input name="reg_user" type="submit" class="form-control" id="submit" value="update">
 					</div>

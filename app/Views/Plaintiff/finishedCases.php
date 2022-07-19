@@ -340,10 +340,10 @@ http://www.tooplate.com/view/2080-minimax
           }
       }
 
-      $(document).on('click', '.submit_star', function(){
+      $(document).on('mouseenter', '.submit_star', function(){
 
       rating_data = $(this).data('rating');
-
+        console.log(rating_data);
       });
 
       $('#save_review').click(function(){
@@ -356,14 +356,17 @@ http://www.tooplate.com/view/2080-minimax
             alert("Please Fill Both Field");
             return false;
         }else{
-          console.log(user_name,user_review);
+          
+          dataa = {user_review:user_review, user_name:user_name,rating_data:rating_data},
+          console.log(dataa)
           $.ajax({
             url: '<?= base_url('/rating') ?>',
             method:"POST",
             dataType: 'json',
-            data:{rating_data:rating_data},
-            success:function(data)
+            data: dataa,
+            success:function(dataa)
                 {
+                  alert('sent')
                     $('#review_modal').modal('hide');
                 }
 

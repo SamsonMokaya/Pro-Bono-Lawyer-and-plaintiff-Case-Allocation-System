@@ -17,13 +17,11 @@ http://www.tooplate.com/view/2080-minimax
 
 -->
   <!-- stylesheet css -->
-  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="/assets/css/nivo-lightbox.css" rel="stylesheet" type="text/css">
-  <link href="/assets/css/default.css" rel="stylesheet" type="text/css">
-  <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
-  <link href="/assets/css/profile.css" rel="stylesheet" type="text/css">
-  
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/nivo-lightbox.css">
+	<link rel="stylesheet" href="assets/css/nivo_themes/default/default.css">
+	<link rel="stylesheet" href="assets/css/style.css">
 	
 	<!-- google web font css -->
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600,700' rel='stylesheet' type='text/css'>
@@ -31,6 +29,19 @@ http://www.tooplate.com/view/2080-minimax
 
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse">
+      <?php 
+      //if (isset($_SESSION['message'])):
+       ?>
+  <div class="msg">
+    <?php 
+    //   echo $_SESSION['message']; 
+    //   unset($_SESSION['message']);
+    ?>
+  </div>
+<?php 
+ //endif
+ ?>
+
 
   
 <!-- navigation -->
@@ -48,7 +59,7 @@ http://www.tooplate.com/view/2080-minimax
         
 			<ul class="nav navbar-nav navbar-right">
             <h3>Welcome <?=session()->get('First_Name')?></h3>
-            <li><a href="<?= base_url("/plaintiff") ?>">Back</a></li>
+            <li><a href="<?= base_url("/admin") ?>">Back</a></li>
             <li><a href="<?= base_url("/logout") ?>">logout</a></li>
             </ul>
 		    </div>
@@ -57,55 +68,7 @@ http://www.tooplate.com/view/2080-minimax
 
 
 
-<?php
-$plaintiff = session()->get('plaintiff');
-?>
-<div class="container mt-5">
-    
-    <div class="row d-flex justify-content-center">
-        
-        <div class="col-md-7">
-            
-            <div class="card p-3 py-4">
-                
-                <div class="text-center">
-                    <img src="<?= base_url('/assets/images/uploads/'.$plaintiff['profile_pic']) ?>" width="100" class="rounded-circle">
-                </div>
-                
-                <div class="text-center mt-3">
-                    <h4 class="mt-2 mb-0">Name : <?php echo $plaintiff['First_Name'].' '.$plaintiff['Last_Name'] ?></h4>
-                    <span>Email : <?php echo $plaintiff['Email']?></span>
-                    <br>
-                    <span>Password : <?php echo $plaintiff['password']?></span><br>
-                    <span>Criminal Record : <?php echo $plaintiff['Criminal_Record']?></span>
-                    <br>
-                    <span><button onclick="location.href='<?= base_url('/editProfileP'.'/'.session()->get('ID')) ?>'">Edit Profile</button></span>
-                    <br>
-                    
-                     <ul class="social-list">
-                        <li><i class="fa fa-facebook"></i></li>
-                        <li><i class="fa fa-dribbble"></i></li>
-                        <li><i class="fa fa-instagram"></i></li>
-                        <li><i class="fa fa-linkedin"></i></li>
-                        <li><i class="fa fa-google"></i></li>
-                    </ul>
-                    
-                    <div class="buttons">
-                        
-                        <button class="btn btn-outline-primary px-4">Message</button>
-                        <button class="btn btn-primary px-4 ms-3">Contact</button>
-                    </div>
-                    
-                    
-                </div>
-     
-            </div>
-            
-        </div>
-        
-    </div>
-    
-</div>
+
 
 <!-- divider section -->
 <div class="container">
@@ -118,19 +81,55 @@ $plaintiff = session()->get('plaintiff');
   </div>
 </div>
 
+<!-- contact section -->
 <div id="contact">
   <div class="container">
     <div class="row">
     <div class="col-md-12 col-sm-12">
-        <h2>RATINGS</h2>
+        <h2>LAWYER LOGS </h2>
       </div>
+        <table align="centre" border="4px" style="width: 1000px"; line-height:40px>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Criminal Record</th>
+      <th>Succesful Cases</th>
+      <th>Failed Cases</th>
+    </tr>
+  </thead>
+  <?php
 
-    </div>
+  $lawyers = session()->get('lawyers');
+  
+  foreach ($lawyers as $row) { 
+  
+    ?>
+    <tbody>
+    <tr>
+       <td><p><?php echo $row['ID']; ?></td></p>
+      <td><p><?php echo $row['First_Name'].' '.$row['Last_Name'] ?></td></p>
+      <td><p><?php echo $row['Email']; ?></td></p>
+      <td><p><?php echo $row['Criminal_Record']; ?></td></p>
+      <td><p><?php echo $row['Succesful_Cases']; ?></td></p>
+      <td><p><?php echo $row['Failed_Cases']; ?></td></p>
+    </tr>
+    </tbody>
+
+  <?php } ?>
+</table>
+
+
+    </form>
+    
+           
+        </div>
+        <div class="col-md-1 col-sm-1"></div>
+      </form>
     </div>
   </div>
 </div>
-
-
 
 <!-- divider section -->
 <div class="container">
@@ -203,7 +202,6 @@ $plaintiff = session()->get('plaintiff');
 <script src="assets/js/isotope.js"></script>
 <script src="assets/js/imagesloaded.min.js"></script>
 <script src="assets/js/custom.js"></script>
-
 
 </body>
 </html>

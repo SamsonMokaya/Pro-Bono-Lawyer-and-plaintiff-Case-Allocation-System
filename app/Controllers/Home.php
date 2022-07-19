@@ -29,6 +29,14 @@ class Home extends BaseController
                 return view('signup', $data);
             }else{
 
+                $data = [
+                    'First_Name' => $this->request->getPost('First_Name'),
+                    'Last_Name' => $this->request->getPost('Last_Name'),
+                    'Email' => $this->request->getPost('Email'),
+                    'password' => $this->request->getPost('password_1'),
+                    'role' => $this->request->getPost('role'),
+                ];
+    
                 
                 
                 $userModel->saveData($data);
@@ -108,21 +116,7 @@ class Home extends BaseController
         
     }
 
-    public function updateProfileUser($cid=0){
-
-        $data = [
-            'First_Name' => $this->request->getPost('First_Name'),
-            'Last_Name' => $this->request->getPost('Last_Name'),
-            'Email' => $this->request->getPost('Email'),
-            'password' => $this->request->getPost('password_1'),
-           
-        ];
-        $userModel = new UserModel();
-        $userModel->updateProfile($cid,$data);
-        session()->set($data);
-        return redirect()->to('/plaintiff');
-
-    }
+    
 
     private function setUserSession($user)
     {

@@ -94,7 +94,7 @@ http://www.tooplate.com/view/2080-minimax
             <?php endif; ?>
 			</div>
             
-			<form action="<?= base_url("/editupdateProfile".'/'.session()->get('ID')) ?>" method="post" role="form">
+			<form enctype="multipart/form-data" action="<?= base_url("/editupdateProfile".'/'.session()->get('ID')) ?>" method="post" role="form">
 				<div class="col-md-1 col-sm-1"></div>
 				<div class="col-md-10 col-sm-10">
 					<div class="col-md-6 col-sm-6">
@@ -113,20 +113,11 @@ http://www.tooplate.com/view/2080-minimax
 						<input name="password_2" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required class="form-control" id="password_2" placeholder="confirm password">
 						<span id='message'></span>
 				  	</div>
-					<div class="col-md-8 col-sm-8">
-                    	<?php if(isset($validation)): ?>
-                       <div class="col-12">
-                           <div class="alert alert-danger" roles="alert">
-                               <?= $validation->listerrors()?>
-
-                           </div>
-                       </div>
-                    	<?php endif; ?>
+					<div class="col-md-6 col-sm-6">
+					<div class="form-group mb-2">
+						<input type="file" name="img" class="form-control" id="customFile">
 					</div>
-			
-					<div class="col-md-8 col-sm-8">
-					<a href="<?= base_url("/signin") ?>">Have an account? Sign in here</a>
-					</div>
+				</div>
 					<div class="col-md-4 col-sm-4">
 						<input name="reg_user" type="submit" class="form-control" id="submit" value="update">
 					</div>
